@@ -1,7 +1,6 @@
-const { isEmptyObject } = require("jquery")
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
 
-const Schema = mongoose.Schema
+const Schema = mongoose.Schema;
 const userSchema = new Schema({
     firstname: {
         type: String,
@@ -16,33 +15,35 @@ const userSchema = new Schema({
         required: true,
     },
     location: {
-        type: string,
-        enum: ["Point"],
-        required: true,
-    },
-    coordinates: {
-        type: [Number],
-        required: true
+        type: {
+            type: String,  // GeoJSON type
+            enum: ["Point"], // Specify it's a Point
+            required: true,
+        },
+        coordinates: {
+            type: [Number], // Array of numbers for [longitude, latitude]
+            required: true,
+        },
     },
     bloodtype: {
         type: String,
         enum: ['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-'],
-        required: true
+        required: true,
     },
     email: {
         type: String,
         required: true,
-        unique: true
+        unique: true,
     },
     phonenumber: {
-        type: Number,
+        type: String,
         required: true,
-        unique: true
+        unique: true,
     },
-    age: {
+    dateOfBirth: {
         type: Date,
-        required: true
+        required: true,
     },
+});
 
-
-})
+module.exports = mongoose.model("User", userSchema);

@@ -13,13 +13,23 @@
             <a class="logo" href="/">BloodSend</a>
             <nav class="navbar">
                 <ul>
-                    <li><a href="/home">Home </a></li>
+                    <li><a href="/">Home </a></li>
                     <li><a href="/about">About </a></li>
                     <button>Log in</button>
                     <button>Sign up</button>
                 </ul>
             </nav>
         </header>
+
+        <div class="donorslistcontainer">
+            <ul class="donorslist">
+                <% data.forEach(user => { %>
+                    <li>
+                        <label><a href="/users/<%= user._id %>"><%= user.firstname %> <%= user.lastname %> || Bloodtype: <%= user.bloodtype %></a></label>
+                    </li>
+                <% }); %>
+            </ul>
+        </div>
     </div>
 </body>
 </html>
