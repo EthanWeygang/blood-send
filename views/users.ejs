@@ -6,6 +6,15 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>User: <%= id %></h1>
+    <div>
+        <h1>User: <%= userData.firstname %> <%= userData.lastname %></h1>
+        <ul>
+            <li>unique id: <%= userId %></li>
+            <li>blood type: <%= userData.bloodtype %></li>
+            <li>looking to donate: <%= userData.donor %></li>
+            <li>email: <%= userData.email %></li>
+            <li>phone number: <%= userData.phonenumber %></li>
+        </ul>
+    </div>
 </body>
 </html>

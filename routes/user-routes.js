@@ -10,9 +10,18 @@ router.get('/new', (req, res) => {
     res.status(200).send("new user page")
 })
 
-router.get('/:id', (req, res) => {
-    const userId = req.params.id;
-    res.status(200).render('users', { id: userId });
+router.get('/:id', async (req, res) => {
+    try {
+        const userId = req.params.id
+        const userData = await users.findById(userId)
+
+        res.status(200).render('users', { userId: userId, userData: userData })
+
+    } catch(error) {
+        console.log(error)
+        res.status(500).send("Error fetching user data")
+    }
+    
 });
 
 module.exports = router

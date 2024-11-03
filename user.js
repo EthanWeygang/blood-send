@@ -17,7 +17,7 @@ const userSchema = new Schema({
     location: {
         type: {
             type: String,  // GeoJSON type
-            enum: ["Point"], // Specify it's a Point
+            enum: ["Point"], // Specify its type is a point
             required: true,
         },
         coordinates: {

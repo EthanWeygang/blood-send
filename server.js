@@ -10,7 +10,7 @@ app.set("view engine", "ejs")
 
 
 app.get("/", async (req, res) => {
-    
+
     try{
         const data = await users.find()
         res.status(200).render("home-page", {data}) 
@@ -30,10 +30,22 @@ app.get("/sign-up", (req, res) => {
     res.status(200).render("sign-up")
 })
 
+app.get("/log-in", (req, res) => {
+    res.status(200).render("log-in")
+})
+
 const userRouter = require("./routes/user-routes")
 
 app.use("/users", userRouter)
 
+
+function checkSession(req, res, next){
+    if (req.session && req.session.userId) {
+        next()
+    } else {
+        res.redirect("/log-in")
+    }
+}
 app.listen(port)
 
 
