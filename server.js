@@ -8,6 +8,8 @@ const port = 9000
 
 app.set("view engine", "ejs")
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.get("/", async (req, res) => {
 
@@ -20,8 +22,6 @@ app.get("/", async (req, res) => {
 
 })
 
-
-
 app.get("/about", (req, res) => {
     res.status(200).render("about-page")
 })
@@ -30,14 +30,11 @@ app.get("/sign-up", (req, res) => {
     res.status(200).render("sign-up")
 })
 
-app.get("/log-in", (req, res) => {
-    res.status(200).render("log-in")
-})
+const loginRouter = require("./routes/login-routes")
+app.use("/log-in", loginRouter)
 
 const userRouter = require("./routes/user-routes")
-
 app.use("/users", userRouter)
-
 
 function checkSession(req, res, next){
     if (req.session && req.session.userId) {
