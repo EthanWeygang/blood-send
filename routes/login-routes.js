@@ -1,4 +1,5 @@
 const express = require("express")
+const session = require("express-session")
 const app = express()
 const router = express.Router()
 const users = require("../user")
@@ -11,6 +12,7 @@ app.use(express.urlencoded({ extended: true }))
 router.get("/", (req, res) => {
     res.status(200).render("log-in")
 })
+
 router.post("/", async (req, res) => {
     const username = req.body.username
     const enteredPassword = req.body.password
