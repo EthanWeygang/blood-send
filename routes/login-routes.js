@@ -7,22 +7,20 @@ const users = require("../user")
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+router.use(checkSession)
 
 
 router.get("/", (req, res) => {
+
     res.status(200).render("log-in")
 })
 
 router.post("/", async (req, res) => {
-    const username = req.body.username
-    const enteredPassword = req.body.password
-    console.log("working")
+    const { email: email, enteredPassword: enteredPassword } = req.body
 
     try{
-        console.log(username)
-        console.log(enteredPassword)
+        const user = await users.findOne({email: email})
 
-        const user = await users.findOne(username)
         if(!user){
             res.status(400).send("Invalid password or email")
             return
@@ -38,10 +36,19 @@ router.post("/", async (req, res) => {
 
     } catch (error){
         res.send("an error occured")
+        console.log(error)
     }
 
     
 })
+
+function checkSession(req, res, next){
+    if (req.session.userId) {
+        res.redirect("/")
+    } else {
+        next()
+    }
+}
 
 module.exports = router
 

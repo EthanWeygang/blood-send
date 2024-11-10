@@ -1,16 +1,16 @@
 const express = require("express")
 const session = require("express-session")
 const connectDB = require("./db")
-connectDB()
 const users = require("./user")
-
 const app = express()
 const port = 9000
 
+connectDB()
 app.set("view engine", "ejs")
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+
 app.use(
     session({
         secret: "abc",
@@ -22,12 +22,13 @@ app.use(
     })
 )
 
-app.get("/", async (req, res) => {
-
+app.get("/", checkSession, async (req, res) => {
     try{
         const data = await users.find()
         res.status(200).render("home-page", {data}) 
-    } catch (error){
+        return
+        
+    } catch(error){
         console.log(error)
     }
 
@@ -37,23 +38,24 @@ app.get("/about", (req, res) => {
     res.status(200).render("about-page")
 })
 
-app.get("/sign-up", (req, res) => {
-    res.status(200).render("sign-up")
-})
-
 const loginRouter = require("./routes/login-routes")
 app.use("/log-in", loginRouter)
+
+const signupRouter = require("./routes/signup-routes")
+app.use("/sign-up", signupRouter)
 
 const userRouter = require("./routes/user-routes")
 app.use("/users", userRouter)
 
+
 function checkSession(req, res, next){
-    if (req.session && req.session.userId) {
+    if (req.session.userId) {
         next()
     } else {
         res.redirect("/log-in")
     }
 }
+
 app.listen(port)
 
 

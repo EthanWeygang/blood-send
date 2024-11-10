@@ -8,15 +8,20 @@
 <body>
     <div>
         <h1>log in page</h1>
-        <form>
+
+        <form action="/log-in" method="POST">
             email
-            <input type="email" id="email" required>
+            <input name="email" type="email" id="email" required>
             <br>
             password
-            <input type="password" id="password" required>
+            <input name="enteredPassword" type="password" id="enteredPassword" required>
             <br>
             <button type="submit">Log in</button>
         </form>
+
+        </br>
+
+         or <a href="/sign-up">Sign up </a>
     </div>
 </body>
 </html>
