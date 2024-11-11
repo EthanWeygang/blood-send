@@ -7,68 +7,63 @@
 </head>
 <body>
     <div class="container">
-        <form>
+        <form method="POST">
             <div>
                 <label>First name:</label>
-                <input type="text">
+                <input type="text" name="firstname">
             </div>
             
 
             <div>
                 <label>Last name:</label>
-                <input type="text">
+                <input type="text" name="lastname">
             </div>
 
             <div>
                 <label>Email:</label>
-                <input type="email">
+                <input type="email" name="email">
+            </div>
+
+            <div>
+                <label>Password:</label>
+                <input type="password" name="password">
             </div>
 
             <div>
                 <label>Phone number:</label>
-                <input type="phone">
+                <input type="phone" name="phone">
             </div>
 
             <div>
                 <label>Birthdate:</label>
-                <input type="date">
+                <input type="date" name="birthday">
             </div>
 
             <div>
                 <label>Are donating or seeking blood?</label>
                 <br>
                 <label>Seeking</label>
-                <input type="radio" name="donor" value="True">
+                <input type="radio" name="donor" value=1>
                 <label>Donating</label>
-                <input type="radio" name="donor" value="False">
-            </div>
-
-            <div>
-                <label>House Number</label>
-                <input type="text">
-            </div>
-
-            <div>
-                <label>Street</label>
-                <input type="text">
+                <input type="radio" name="donor" value=0>
             </div>
 
             <div>
                 <label>Postcode</label>
-                <input type="text">
+                <input type="text" name="postcode">
             </div>
 
             <div>
                 <label>Blood type:</label>
-                <select>
-                    <option>A</option>
-                    <option>B</option>
-                    <option>C</option>
-                    <option>D</option>
-                    <option>E</option>
-                    <option>F</option>
-                    <option>G</option>
-                    <option>H</option>
+                <select name="bloodtype">
+                    <option>A+</option>
+                    <option>A-</option>
+                    <option>B+</option>
+                    <option>B-</option>
+                    <option>O+</option>
+                    <option>O-</option>
+                    <option>AB+</option>
+                    <option>AB-</option>
                 </select>
             </div>
             <input type="submit">
