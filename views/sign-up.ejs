@@ -10,52 +10,52 @@
         <form method="POST">
             <div>
                 <label>First name:</label>
-                <input type="text" name="firstname">
+                <input type="text" name="firstname" required>
             </div>
             
 
             <div>
                 <label>Last name:</label>
-                <input type="text" name="lastname">
+                <input type="text" name="lastname" required>
             </div>
 
             <div>
                 <label>Email:</label>
-                <input type="email" name="email">
+                <input type="email" name="email" required>
             </div>
 
             <div>
                 <label>Password:</label>
-                <input type="password" name="password">
+                <input type="password" name="password" required>
             </div>
 
             <div>
                 <label>Phone number:</label>
-                <input type="phone" name="phone">
+                <input type="phone" name="phone" required>
             </div>
 
             <div>
                 <label>Birthdate:</label>
-                <input type="date" name="birthday">
+                <input type="date" name="birthday" required>
             </div>
 
             <div>
                 <label>Are donating or seeking blood?</label>
                 <br>
                 <label>Seeking</label>
-                <input type="radio" name="donor" value=1>
+                <input type="radio" name="donor" value=1 required>
                 <label>Donating</label>
-                <input type="radio" name="donor" value=0>
+                <input type="radio" name="donor" value=0 required>
             </div>
 
             <div>
                 <label>Postcode</label>
-                <input type="text" name="postcode">
+                <input type="text" name="postcode" required>
             </div>
 
             <div>
                 <label>Blood type:</label>
-                <select name="bloodtype">
+                <select name="bloodtype" required>
                     <option>A+</option>
                     <option>A-</option>
                     <option>B+</option>

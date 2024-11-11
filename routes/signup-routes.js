@@ -20,26 +20,28 @@ router.get("/", async (req, res) => {
 router.post("/", async(req, res) => {
     
     try{
-    const { firstname, lastname, email, password, phone, birthday, donor, postcode, bloodtype } = req.body
-    coords = await getCordsFromPostcode(postcode)
-    
-    users.insertMany({
-        firstname: firstname,
-        lastname: lastname,
-        donor: donor,
-        location: {type: "Point", coordinates: [coords.longitude, coords.latitude]},
-        bloodtype: bloodtype,
-        email: email,
-        password: password,
-        phonenumber: phone,
-        dateOfBirth: new Date(birthday)
-    }).then(console.log(`Inserted new user ${firstname}`))
-            
-    res.redirect("/")
-    return
+        const { firstname, lastname, email, password, phone, birthday, donor, postcode, bloodtype } = req.body
+        coords = await getCordsFromPostcode(postcode)
+        
+        await users.insertMany({
+            firstname: firstname,
+            lastname: lastname,
+            donor: donor,
+            location: {type: "Point", coordinates: [coords.longitude, coords.latitude]},
+            bloodtype: bloodtype,
+            email: email,
+            password: password,
+            phonenumber: phone,
+            dateOfBirth: new Date(birthday)
+        })
+                
+        res.redirect("/")
+        return
 
     } catch(error){
         console.log(error)
+        res.send("details already linked to an existing account")
+        return
     }
 
     
