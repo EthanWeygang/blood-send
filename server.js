@@ -25,13 +25,16 @@ app.use(
 app.get("/", checkSession, async (req, res) => {
     try{
         const data = await users.find()
-        res.status(200).render("home-page", {data}) 
+        res.status(200).render("home-page", {data})
         return
         
     } catch(error){
         console.log(error)
     }
 
+})
+app.post("/", async (req, res) => {
+    res.redirect("/")
 })
 
 app.get("/about", (req, res) => {
