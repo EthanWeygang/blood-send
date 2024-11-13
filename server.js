@@ -1,6 +1,7 @@
 const express = require("express")
 const session = require("express-session")
 const connectDB = require("./db")
+const path = require('path'); // for jquery
 const users = require("./user")
 const app = express()
 const port = 9000
@@ -9,6 +10,7 @@ connectDB()
 app.set("view engine", "ejs")
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use('/third-party', express.static(path.join(__dirname, 'node_modules'))); // for jquery
 
 
 app.use(
@@ -46,6 +48,9 @@ app.use("/log-in", loginRouter)
 
 const signupRouter = require("./routes/signup-routes")
 app.use("/sign-up", signupRouter)
+
+const apiRouter = require("./routes/api-routes")
+app.use("/api", apiRouter)
 
 const userRouter = require("./routes/user-routes")
 app.use("/users", userRouter)

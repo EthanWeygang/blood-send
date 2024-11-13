@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="third-party/jquery-3.7.1.min.js"></script>
+    <script src="/third-party/jquery/dist/jquery.min.js"></script>
     <link rel="stylesheet" href="style.css">
     <title>BloodSend</title>
 </head>
@@ -21,14 +21,50 @@
             </nav>
         </header>
 
+        <script>
+            $(document).ready(function() {
+                
+                $('#refreshbutton').click(function (){
+                    const maxDistance = $("#distance-select").val()
+                    $.ajax({
+                        url: `/api/near-users?maxDistance=${maxDistance}`,
+                        method: "GET",
+
+                        success: function(users){
+                            const donorslist = $("#donorslist")
+                            donorslist.empty()
+
+                            users.forEach(user => {
+                                donorslist.append(
+                                    `<li>
+                                        <label><a href="/users/${user._id }">${user.firstname} ${user.lastname} || Bloodtype: ${user.bloodtype}</a></label>
+                                    </li>`
+                                )
+                            });
+                        },
+
+                        error: function(error){
+                            console.log(error)
+                        }
+                    })
+                })
+            })
+        </script>
+
         <select id="distance-select">
-            <option value="5">5 km</option>
-            <option value="10">10 km</option>
-            <option value="20">20 km</option>
+            <option value="999999999999">Anywhere</option>
+            <option value="5000">5 km</option>
+            <option value="10000">10 km</option>
+            <option value="20000">20 km</option>
+            <option value="100000">100 km</option>
+            <option value="5000000">5000 km</option>
+            <option value="50000000">50000 km</option>
         </select>
+
+        <button id="refreshbutton"> Refresh </button>
         
         <div class="donorslistcontainer">
-            <ul class="donorslist">
+            <ul class="donorslist" id="donorslist">
                 <% data.forEach(user => { %>
                     <li>
                         <label><a href="/users/<%= user._id %>"><%= user.firstname %> <%= user.lastname %> || Bloodtype: <%= user.bloodtype %></a></label>
