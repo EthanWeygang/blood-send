@@ -26,7 +26,12 @@ app.use(
 
 app.get("/", checkSession, async (req, res) => {
     try{
-        const data = await users.find()
+        const userId = req.session.userId
+        const data = await users.find({
+            _id: { 
+                $ne: userId
+            }
+        })
         res.status(200).render("home-page", {data})
         return
         

@@ -8,8 +8,16 @@ app.use(express.urlencoded({ extended: true }))
 
 router.get("/users", async (req, res) => {
     try{
-        const userslist = await users.find()
-        res.json(userslist)
+        const usersList = await users.find()
+        const filteredUserData = usersList.map(user => ({
+            firstname: user.firstname,
+            lastname: user.lastname,
+            location: user.location,
+        }))
+
+        console.log(filteredUserData)
+
+        res.json(filteredUserData)
 
     } catch(error){
         console.log(error)
@@ -34,7 +42,13 @@ router.get("/near-users", async (req, res) => {
                     $geometry: userLocation,
                     $maxDistance: maxDistance
                 }
-            }})
+            },
+            _id: { 
+                $ne: userId
+            }
+        })
+
+            
         
         res.json(nearUsers)
     } catch(error){
