@@ -32,7 +32,7 @@ app.get("/", checkSession, async (req, res) => {
                 $ne: userId
             }
         })
-        res.status(200).render("home-page", {data})
+        res.status(200).render("home-page", {data, userId})
         return
         
     } catch(error){

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/third-party/jquery/dist/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <a class="logo" href="/">BloodSend</a>
+    <div>
+        <h1>User: <%= userData.firstname %> <%= userData.lastname %></h1>
+        <script>
+            $(document).ready(function(){
+                $("#deletebutton").click(function(){
+                    var embeddedUserId = "<%= userId %>"
+                    $.ajax({
+                        url: `/users/${embeddedUserId}`,
+                        method: "DELETE",
+
+                        success: function(){
+                            console.log("account deleted")
+                        },
+                        error: function(error){
+                            console.log(error)
+                        }
+
+                    })
+                })
+            })
+        </script>
+        <button  id="deletebutton">Delete account</button>
+        <ul>
+            <li>unique id: <%= userId %></li>
+            <li>blood type: <%= userData.bloodtype %></li>
+            <li>looking to donate: <%= userData.donor %></li>
+            <li>email: <%= userData.email %></li>
+            <li>phone number: <%= userData.phonenumber %></li>
+        </ul>
+    </div>
+</body>
+</html>

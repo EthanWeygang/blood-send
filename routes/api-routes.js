@@ -47,8 +47,6 @@ router.get("/near-users", async (req, res) => {
                 $ne: userId
             }
         })
-
-            
         
         res.json(nearUsers)
     } catch(error){

@@ -5,7 +5,7 @@ const users = require("../user")
 
 router.use(checkSession); // this is middleware applied to every route
 
-router.get('/', (req, res) => {
+router.get("/", (req, res) => {
 
     try{
         res.status(200).send("search for user page")
@@ -17,10 +17,16 @@ router.get('/', (req, res) => {
 
 })
 
-router.get('/:id', async (req, res) => {
+router.get("/:id", async (req, res) => {
     try{
         const userId = req.params.id
+        const sessionUserId = req.session.userId
         const userData = await users.findById(userId)
+
+        if (userId == sessionUserId){
+            res.status(200).render('own-users', { userId: userId, userData: userData })
+            return
+        }
 
         res.status(200).render('users', { userId: userId, userData: userData })
         
@@ -30,6 +36,30 @@ router.get('/:id', async (req, res) => {
     }
     
 });
+
+router.delete("/:id", async (req, res) => {
+    try{
+        userId = req.params.id
+        deletedUser = await users.findByIdAndDelete(userId)
+        console.log(`deleting user ${userId}`)
+
+        if (!deletedUser){
+            res.status(404).send('User not found')
+            return
+        }
+
+        req.session.destroy((err) => {
+            if (err) {
+                console.log('Error destroying session:', err);
+                return res.status(500).send('Error logging out');
+            }})
+
+        res.status(400).send("account deleted") // this wont work
+
+    } catch(error){
+        console.log(error)
+    }
+})
 
 function checkSession(req, res, next){ // idk how to export this from server.js so i c&p it
     if (req.session.userId) {
