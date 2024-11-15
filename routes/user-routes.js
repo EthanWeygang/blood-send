@@ -61,6 +61,17 @@ router.delete("/:id", async (req, res) => {
     }
 })
 
+router.post("/log-out", async (req, res) => {
+    try{
+        req.session.destroy()
+        res.redirect("/log-in")
+        
+    } catch(error){
+        console.log(error)
+    }
+    
+});
+
 function checkSession(req, res, next){ // idk how to export this from server.js so i c&p it
     if (req.session.userId) {
         next()

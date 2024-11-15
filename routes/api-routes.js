@@ -1,10 +1,9 @@
 const express = require("express")
 const router = express.Router()
 const users = require("../user")
-const app = express()
 
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
+router.use(express.json())
+router.use(express.urlencoded({ extended: true }))
 
 router.get("/users", async (req, res) => {
     try{
@@ -33,6 +32,7 @@ router.get("/near-users", async (req, res) => {
         if(!currentUser || !currentUser.location){
             res.status(400).json({error: "location not found"})
         }
+        const findBloodSeekers = currentUser.donor == 1 ? 0 : 1
 
         const userLocation = currentUser.location
         const maxDistance = parseInt(req.query.maxDistance) || 5000
@@ -45,7 +45,8 @@ router.get("/near-users", async (req, res) => {
             },
             _id: { 
                 $ne: userId
-            }
+            },
+            donor: findBloodSeekers,
         })
         
         res.json(nearUsers)

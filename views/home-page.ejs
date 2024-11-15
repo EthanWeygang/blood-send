@@ -24,8 +24,8 @@
 
         <script>
             $(document).ready(function() {
-                
-                $('#refreshbutton').click(function (){
+
+                function getdistance(){
                     const maxDistance = $("#distance-select").val()
                     $.ajax({
                         url: `/api/near-users?maxDistance=${maxDistance}`,
@@ -47,8 +47,12 @@
                         error: function(error){
                             console.log(error)
                         }
+
                     })
-                })
+                }
+                getdistance()
+                $('#refreshbutton').click(getdistance)
+
             })
         </script>
 
@@ -66,11 +70,7 @@
         
         <div class="donorslistcontainer">
             <ul class="donorslist" id="donorslist">
-                <% data.forEach(user => { %>
-                    <li>
-                        <label><a href="/users/<%= user._id %>"><%= user.firstname %> <%= user.lastname %> || Bloodtype: <%= user.bloodtype %></a></label>
-                    </li>
-                <% }); %>
+                
             </ul>
         </div>
     </div>
