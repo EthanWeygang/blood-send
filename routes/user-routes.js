@@ -35,7 +35,7 @@ router.get("/:id", async (req, res) => {
         res.status(500).send("Error fetching user data")
     }
     
-});
+}); 
 
 router.delete("/:id", async (req, res) => {
     try{
