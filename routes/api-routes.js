@@ -56,4 +56,41 @@ router.get("/near-users", async (req, res) => {
     
 })
 
+router.get("/near-users-point", async (req, res) => {
+    try{
+        const maxDistance = parseInt(req.query.maxDistance)
+        const latitude = parseFloat(req.query.latitude)
+        const longitude = parseFloat(req.query.longitude)
+        const userLocation = {
+            type: "Point",
+            coordinates: [longitude, latitude]
+        }
+        
+
+        if (isNaN(latitude) || isNaN(longitude) || isNaN(maxDistance)) {
+            return res.status(400).json({ error: "Invalid query parameters" });
+        }
+
+        const nearUsers = await users.find({
+            location: {
+                $near: {
+                    $geometry: userLocation,
+                    $maxDistance: maxDistance
+                }
+            }
+        })
+
+        const filteredUserData = nearUsers.map(user => ({
+            firstname: user.firstname,
+            lastname: user.lastname,
+            location: user.location,
+        }))
+        
+        res.json(filteredUserData)
+    } catch(error){
+        console.log(error)
+    }
+    
+})
+
 module.exports = router

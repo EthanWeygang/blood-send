@@ -31,6 +31,18 @@
         </script>
         <button  id="deletebutton">Delete account</button>
         <button  id="logout">Log out</button>
+        <script>
+            $(document).ready(function(){
+                $(logout).click(function(){
+                    $.ajax({
+                        url: `/users/${embeddedUserId}`,
+                        method: "POST"
+                    })
+                
+                })
+            })
+
+        </script>
         <ul>
             <li>unique id: <%= userId %></li>
             <li>blood type: <%= userData.bloodtype %></li>
