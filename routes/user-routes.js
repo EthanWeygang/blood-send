@@ -48,13 +48,15 @@ router.delete("/:id", async (req, res) => {
             return
         }
 
+        res.status(200).send("account deleted") // this wont work
+        
         req.session.destroy((err) => {
             if (err) {
                 console.log('Error destroying session:', err);
                 return res.status(500).send('Error logging out');
             }})
 
-        res.status(400).send("account deleted") // this wont work
+        
 
     } catch(error){
         console.log(error)
