@@ -63,7 +63,7 @@ router.delete("/:id", async (req, res) => {
     }
 })
 
-router.post("/log-out", async (req, res) => {
+router.post("/:id", async (req, res) => {
     try{
         req.session.destroy()
         res.redirect("/log-in")
@@ -74,7 +74,7 @@ router.post("/log-out", async (req, res) => {
     
 });
 
-function checkSession(req, res, next){ // idk how to export this from server.js so i c&p it
+function checkSession(req, res, next){
     if (req.session.userId) {
         next()
     } else {

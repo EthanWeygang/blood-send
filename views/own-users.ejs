@@ -5,7 +5,92 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="/third-party/jquery/dist/jquery.min.js"></script>
     <title>Document</title>
-</head>
+    <style>
+        /* General Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.logo {
+    font-size: 24px;
+    text-decoration: none;
+    color: #e63946;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Main Container */
+div {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+/* Button Styles */
+button {
+    padding: 10px 15px;
+    background-color: #e63946;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #d62828;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    div {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    ul li {
+        font-size: 14px;
+    }
+
+    button {
+        font-size: 12px;
+        padding: 8px 12px;
+    }
+}
+
+    </style></head>
 <body>
     <a class="logo" href="/">BloodSend</a>
     <div>
@@ -33,10 +118,20 @@
         <button  id="logout">Log out</button>
         <script>
             $(document).ready(function(){
-                $(logout).click(function(){
+                $("#logout").click(function(){
+                    var embeddedUserId = "<%= userId %>"
+                    
                     $.ajax({
                         url: `/users/${embeddedUserId}`,
-                        method: "POST"
+                        method: "POST",
+
+                        success: function(){
+                            console.log("User Logged out")
+                        },
+                        error: function(error){
+                            console.log(error)
+                        }
+                        
                     })
                 
                 })
@@ -44,11 +139,11 @@
 
         </script>
         <ul>
-            <li>unique id: <%= userId %></li>
-            <li>blood type: <%= userData.bloodtype %></li>
-            <li>looking to donate: <%= userData.donor %></li>
-            <li>email: <%= userData.email %></li>
-            <li>phone number: <%= userData.phonenumber %></li>
+            <li>Unique id: <%= userId %></li>
+            <li>Blood type: <%= userData.bloodtype %></li>
+            <li>Seeking Blood: <%= userData.donor %></li>
+            <li>Email: <%= userData.email %></li>
+            <li>Phone number: <%= userData.phonenumber %></li>
         </ul>
     </div>
 </body>

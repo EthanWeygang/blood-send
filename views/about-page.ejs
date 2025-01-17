@@ -3,12 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>About BloodSend</title>
+    <style>
+        /* General Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+.header {
+    background-color: #e63946;
+    color: white;
+    padding: 15px 20px;
+    text-align: center;
+}
+
+.logo {
+    font-size: 24px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+.content {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.about-section,
+.mission-section,
+.team-section {
+    margin-bottom: 30px;
+}
+
+.about-section h1,
+.mission-section h2,
+.team-section h2 {
+    color: #e63946;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 16px;
+    color: #555;
+}
+
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .content {
+        padding: 15px;
+    }
+
+    .header {
+        font-size: 20px;
+    }
+
+    p {
+        font-size: 14px;
+    }
+}
+
+    </style>
+
 </head>
 <body>
-    <a class="logo" href="/">BloodSend</a>
-    <div>
-        <h1>about</h1>
-    </div>
+    <header class="header">
+        <a class="logo" href="/">BloodSend</a>
+    </header>
+    <main class="content">
+        <section class="about-section">
+            <h1>About BloodSend</h1>
+            <p>
+                BloodSend is a platform dedicated to connecting blood donors and recipients in need. 
+                Our mission is to simplify the process of finding compatible donors and providing a 
+                life-saving resource for those in critical conditions.
+            </p>
+        </section>
+        <section class="mission-section">
+            <h2>Our Mission</h2>
+            <p>
+                To create a community-driven network where individuals can easily access and provide blood donations, 
+                ensuring timely help to save lives.
+            </p>
+        </section>
+    </main>
 </body>
 </html>
