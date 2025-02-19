@@ -1,15 +1,14 @@
 const mongoose = require("mongoose")
-const connectDB = async () => {
+require("dotenv").config()  // Import and configure dotenv
 
+const connectDB = async () => {
     try {
         mongoose.set("strictQuery", false)
-        const conn = await mongoose.connect("mongodb+srv://ethanweygang:Playroom1@bloodsend.1o7ah.mongodb.net/bloodsend")
+        const conn = await mongoose.connect(process.env.MONGO_URI)  // Use the environment variable
         console.log(`Database connected: ${conn.connection.host}`)
-
-    } catch (error){
+    } catch (error) {
         console.log(error)
     }
-    
 }
 
 module.exports = connectDB
