@@ -40,6 +40,11 @@ router.post("/", async(req, res) => {
 
     } catch(error){
         console.log(error)
+        
+        if(error == "postcode not found"){
+            res.send("invalid postcode")
+        }
+        
         res.send("details already linked to an existing account")
         return
     }
