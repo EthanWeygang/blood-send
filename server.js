@@ -69,7 +69,17 @@ function checkSession(req, res, next){
     }
 }
 
-app.listen(port)
+//app.listen(port) removed for vercel
+
+// For local development
+if (process.env.NODE_ENV !== 'production') {
+    app.listen(port, () => {
+      console.log(`Server running on port ${port}`);
+    });
+  }
+  
+  // Export the Express app for Vercel
+  module.exports = app;
 
 
 
