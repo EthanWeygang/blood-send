@@ -24,6 +24,8 @@ app.use(
     })
 )
 
+app.use(express.static('public'));
+
 app.get("/", checkSession, async (req, res) => {
     try{
         const userId = req.session.userId
