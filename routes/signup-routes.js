@@ -21,6 +21,13 @@ router.post("/", async(req, res) => {
     
     try{
         const { firstname, lastname, email, password, phone, birthday, donor, postcode, bloodtype } = req.body
+        
+        const existingUser = await users.findOne({ email: email });
+
+        if (existingUser) {
+            return res.send("Details already linked to an existing account");
+        }
+        
         coords = await getCordsFromPostcode(postcode)
         
         await users.insertMany({
@@ -41,11 +48,7 @@ router.post("/", async(req, res) => {
     } catch(error){
         console.log(error)
         
-        if(error == "postcode not found"){
-            res.send("invalid postcode")
-        }
-        
-        res.send("details already linked to an existing account")
+        res.send("An error occured, please ensure your postcode is valid")
         return
     }
 
@@ -64,7 +67,11 @@ async function getCordsFromPostcode(postcode){
     try{
         const url = `https://api.postcodes.io/postcodes/${encodeURIComponent(postcode)}`
         const response = await axios.get(url)
-        //console.log(response)
+        
+        if (response.data.status !== 200){
+            return res.send("Invalid postcode")
+        }
+
         const data = response.data
 
         if (data.status == 200){
