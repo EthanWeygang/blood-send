@@ -10,7 +10,6 @@
 ## Features
 - **User Registration:** Users can sign up as donors or requesters.
 - **Location-Based Matching:** Find donors within a specific distance.
-- **Blood Type Filtering:** Match patients with compatible donors.
 - **Real-Time Updates:** Refresh the list of available donors dynamically.
 
 ---
