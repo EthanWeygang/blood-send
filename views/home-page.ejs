@@ -38,7 +38,12 @@
                             users.forEach(user => {
                                 donorslist.append(
                                     `<li>
-                                        <label><a href="/users/${user._id }">${user.firstname} ${user.lastname} || Bloodtype: ${user.bloodtype}</a></label>
+                                        <a href="/users/${user._id}">
+                                            <div class="donor-info">
+                                                <span class="donor-name">${user.firstname} ${user.lastname}</span>
+                                                <span class="donor-bloodtype">${user.bloodtype}</span>
+                                            </div>
+                                        </a>
                                     </li>`
                                 )
                             });
@@ -56,23 +61,33 @@
             })
         </script>
 
-        <select id="distance-select">
-            <option value="999999999999">Anywhere</option>
-            <option value="5000">5 km</option>
-            <option value="10000">10 km</option>
-            <option value="20000">20 km</option>
-            <option value="100000">100 km</option>
-            <option value="5000000">5000 km</option>
-            <option value="50000000">50000 km</option>
-        </select>
-
-        <button id="refreshbutton"> Refresh </button>
-        
-        <div class="donorslistcontainer">
-            <ul class="donorslist" id="donorslist">
+        <main class="main-content">
+            <section class="search-section">
+                <h1 class="search-title">Find Blood Donors Near You</h1>
+                <p class="search-subtitle">Connect with compatible donors in your area</p>
                 
-            </ul>
-        </div>
+                <div class="search-controls">
+                    <select id="distance-select">
+                        <option value="999999999999">Anywhere</option>
+                        <option value="5000">5 km</option>
+                        <option value="10000">10 km</option>
+                        <option value="20000">20 km</option>
+                        <option value="100000">100 km</option>
+                        <option value="5000000">5000 km</option>
+                        <option value="50000000">50000 km</option>
+                    </select>
+
+                    <button id="refreshbutton">Refresh</button>
+                </div>
+            </section>
+            
+            <div class="donorslistcontainer">
+                <h2 class="donorslist-title">Available Donors</h2>
+                <ul class="donorslist" id="donorslist">
+                    
+                </ul>
+            </div>
+        </main>
     </div>
 </body>
 </html>

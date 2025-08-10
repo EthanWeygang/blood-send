@@ -1,20 +1,49 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #ffffff;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 100%;
+    margin: 0;
+    background: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #e63946;
+    background: linear-gradient(135deg, #e63946 0%, #d62828 100%);
     color: white;
-    padding: 10px 20px;
-    border-radius: 8px;
-    margin-bottom: 20px;
+    padding: 20px 40px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .logo {
-    font-family: Arial, sans-serif;
-    font-size: 24px;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 28px;
     text-decoration: none;
     color: white;
-    font-weight: bold;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
 }
 
 .navbar ul {
@@ -22,73 +51,259 @@
     display: flex;
     margin: 0;
     padding: 0;
-}
-
-.navbar ul li {
-    margin: 0 10px;
+    gap: 30px;
 }
 
 .navbar ul li a {
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', sans-serif;
     text-decoration: none;
     color: white;
     font-size: 16px;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
 
 .navbar ul li a:hover {
-    text-decoration: underline;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.navbar ul li a:hover::before {
+    left: 100%;
+}
+
+/* Main Content */
+.main-content {
+    padding: 40px;
+    flex: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.search-section {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.search-title {
+    font-size: 32px;
+    color: #333;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.search-subtitle {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.search-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
 }
 
 /* Select and Button Styles */
 #distance-select {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    margin-right: 10px;
-    font-size: 14px;
+    padding: 12px 20px;
+    border: 2px solid #e1e5e9;
+    border-radius: 25px;
+    font-size: 16px;
+    background: white;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 200px;
+}
+
+#distance-select:focus {
+    outline: none;
+    border-color: #e63946;
+    box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.1);
+    transform: translateY(-2px);
 }
 
 #refreshbutton {
-    padding: 8px 16px;
-    background-color: #e63946;
+    padding: 12px 30px;
+    background: linear-gradient(135deg, #e63946 0%, #d62828 100%);
     color: white;
     border: none;
-    border-radius: 4px;
-    font-size: 14px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(230, 57, 70, 0.3);
 }
 
 #refreshbutton:hover {
-    background-color: #d62828;
+    background: linear-gradient(135deg, #d62828 0%, #c11e29 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(230, 57, 70, 0.4);
+}
+
+#refreshbutton:active {
+    transform: translateY(0);
 }
 
 /* Donors List Styles */
 .donorslistcontainer {
-    margin-top: 20px;
-    background: rgb(233, 233, 233);
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background: #f8f9fa;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e9ecef;
+}
+
+.donorslist-title {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 600;
 }
 
 .donorslist {
     list-style: none;
     padding: 0;
     margin: 0;
+    display: grid;
+    gap: 15px;
 }
 
 .donorslist li {
-    margin-bottom: 10px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 12px;
+    padding: 20px;
+    transition: all 0.3s ease;
+    border: 1px solid #e9ecef;
+    position: relative;
+    overflow: hidden;
+}
+
+.donorslist li::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #e63946, #d62828);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.donorslist li:hover::before {
+    transform: scaleX(1);
+}
+
+.donorslist li:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    border-color: #e63946;
 }
 
 .donorslist li a {
     text-decoration: none;
     color: #333;
     font-size: 16px;
-    transition: color 0.3s;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    display: block;
+    line-height: 1.5;
 }
 
-.donorslist li a:hover {
+.donorslist li:hover a {
     color: #e63946;
+}
+
+.donor-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.donor-name {
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.donor-bloodtype {
+    background: linear-gradient(135deg, #e63946 0%, #d62828 100%);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* Empty state */
+.empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: #666;
+}
+
+.empty-state-icon {
+    font-size: 48px;
+    margin-bottom: 20px;
+    opacity: 0.5;
+}
+
+.empty-state-message {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.empty-state-submessage {
+    font-size: 14px;
+    opacity: 0.7;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
+    }
+    
+    .navbar ul {
+        gap: 15px;
+    }
+    
+    .search-controls {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    #distance-select {
+        min-width: 250px;
+    }
+    
+    .main-content {
+        padding: 20px;
+    }
+    
+    .search-title {
+        font-size: 24px;
+    }
+    
+    .donor-info {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 }

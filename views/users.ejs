@@ -4,21 +4,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/users.css">
-
-    <title>Document</title>
-
+    <title>User Profile - BloodSend</title>
 </head>
 <body>
-    <a class="logo" href="/">BloodSend</a>
-    <div>
-        <h1>User: <%= userData.firstname %> <%= userData.lastname %></h1>
-        <ul>
-            <li>Unique id: <%= userId %></li>
-            <li>Blood type: <%= userData.bloodtype %></li>
-            <li>Seeking Blood: <%= userData.donor %></li>
-            <li>Email: <%= userData.email %></li>
-            <li>Phone number: <%= userData.phonenumber %></li>
-        </ul>
+    <div class="container">
+        <header class="header">
+            <a class="logo" href="/">BloodSend</a>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/users/<%= userId %>">Profile</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <main class="content">
+            <section class="profile-header">
+                <div class="profile-avatar">
+                    <%= userData.firstname.charAt(0).toUpperCase() %><%= userData.lastname.charAt(0).toUpperCase() %>
+                </div>
+                <h1 class="profile-name"><%= userData.firstname %> <%= userData.lastname %></h1>
+                <p class="profile-subtitle">Blood Type: <span class="blood-type"><%= userData.bloodtype %></span></p>
+                <div class="profile-status <%= userData.donor == 1 ? 'status-seeking' : 'status-donor' %>">
+                    <%= userData.donor == 1 ? 'Seeking Blood' : 'Blood Donor' %>
+                </div>
+            </section>
+
+            <section class="profile-details">
+                <h2 class="details-title">Contact Information</h2>
+                <div class="details-grid">
+                    <div class="detail-item">
+                        <div class="detail-label">User ID</div>
+                        <div class="detail-value"><%= userId %></div>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <div class="detail-label">Email Address</div>
+                        <div class="detail-value"><%= userData.email %></div>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <div class="detail-label">Phone Number</div>
+                        <div class="detail-value"><%= userData.phonenumber %></div>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <div class="detail-label">Status</div>
+                        <div class="detail-value">
+                            <%= userData.donor == 1 ? 'Looking for blood donors' : 'Available to donate blood' %>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
     </div>
 </body>
 </html>

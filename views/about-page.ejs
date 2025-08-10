@@ -5,30 +5,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About BloodSend</title>
     <link rel="stylesheet" href="/about-page.css">
-
-">
-
 </head>
 <body>
-    <header class="header">
-        <a class="logo" href="/">BloodSend</a>
-    </header>
-    <main class="content">
-        <section class="about-section">
-            <h1>About BloodSend</h1>
-            <p>
-                BloodSend is a platform dedicated to connecting blood donors and recipients in need. 
-                Our mission is to simplify the process of finding compatible donors and providing a 
-                life-saving resource for those in critical conditions.
-            </p>
-        </section>
-        <section class="mission-section">
-            <h2>Our Mission</h2>
-            <p>
-                To create a community-driven network where individuals can easily access and provide blood donations, 
-                ensuring timely help to save lives.
-            </p>
-        </section>
-    </main>
+    <div class="container">
+        <header class="header">
+            <a class="logo" href="/">BloodSend</a>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/users/<%= typeof userId !== 'undefined' ? userId : '' %>">Profile</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <main class="content">
+            <section class="hero-section">
+                <h1 class="hero-title">About BloodSend</h1>
+                <p class="hero-subtitle">Connecting Lives Through Blood Donation</p>
+                <p class="hero-description">
+                    BloodSend is a platform that bridges the gap between blood donors and recipients, 
+                    creating a community-driven network that saves lives across the globe.
+                </p>
+            </section>
+
+            <div class="sections-container">
+                <section class="section-card">
+                    <h2 class="section-title">
+                        <div class="section-icon">🎯</div>
+                        Our Mission
+                    </h2>
+                    <div class="section-content">
+                        <p>
+                            To create a seamless, efficient, and accessible platform where individuals can easily connect 
+                            to provide or receive blood donations. We believe that everyone deserves access to life-saving 
+                            blood when they need it most, and every willing donor should have the opportunity to make a difference.
+                        </p>
+                    </div>
+                </section>
+
+                <section class="section-card">
+                    <h2 class="section-title">
+                        <div class="section-icon">💝</div>
+                        Our Vision
+                    </h2>
+                    <div class="section-content">
+                        <p>
+                            A world where no one suffers or dies due to lack of available blood. We envision a global 
+                            community where blood donation is simple and convenient.
+                        </p>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
 </body>
 </html>

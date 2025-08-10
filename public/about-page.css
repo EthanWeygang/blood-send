@@ -1,53 +1,212 @@
-body {
+/* Global Styles */
+* {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #ffffff;
+    min-height: 100vh;
     color: #333;
-    line-height: 1.6;
+    line-height: 1.7;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 100%;
+    margin: 0;
+    background: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .header {
-    background-color: #e63946;
+    background: linear-gradient(135deg, #e63946 0%, #d62828 100%);
     color: white;
-    padding: 15px 20px;
-    text-align: center;
+    padding: 30px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .logo {
-    font-size: 24px;
+    font-size: 36px;
     text-decoration: none;
     color: white;
-    font-weight: bold;
+    font-weight: 700;
+    letter-spacing: -1px;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    gap: 30px;
+}
+
+.navbar ul li a {
+    font-family: 'Segoe UI', sans-serif;
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+
+
+.navbar ul li a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.navbar ul li a:hover::before {
+    left: 100%;
 }
 
 .content {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 60px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex: 1;
 }
 
-.about-section,
-.mission-section,
-.team-section {
+.hero-section {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.hero-title {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, #e63946 0%, #d62828 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero-subtitle {
+    font-size: 24px;
+    color: #666;
     margin-bottom: 30px;
+    font-weight: 300;
 }
 
-.about-section h1,
-.mission-section h2,
-.team-section h2 {
-    color: #e63946;
-    margin-bottom: 10px;
+.hero-description {
+    font-size: 18px;
+    color: #555;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.8;
 }
 
-p {
+.sections-container {
+    display: grid;
+    gap: 40px;
+}
+
+.section-card {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid #f0f0f0;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.section-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #e63946, #d62828);
+}
+
+.section-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.section-title {
+    font-size: 28px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.section-icon {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #e63946 0%, #d62828 100%);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 20px;
+}
+
+.section-content {
     font-size: 16px;
     color: #555;
+    line-height: 1.8;
 }
 
+/* Responsive Design */
+@media (max-width: 768px) {
+    .content {
+        padding: 40px 20px;
+    }
+    
+    .header {
+        padding: 20px;
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .navbar ul {
+        gap: 15px;
+    }
+    
+    .logo {
+        font-size: 28px;
+    }
+    
+    .hero-title {
+        font-size: 32px;
+    }
+    
+    .hero-subtitle {
+        font-size: 20px;
+    }
+    
+    .section-card {
+        padding: 30px 20px;
+    }
+}
 
 /* Responsive Design */
 @media (max-width: 600px) {

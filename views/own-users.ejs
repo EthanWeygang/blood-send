@@ -5,63 +5,106 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="/third-party/jquery/dist/jquery.min.js"></script>
     <link rel="stylesheet" href="/own-users.css">
-
-    <title>Document</title>
-    </head>
+    <title>My Profile - BloodSend</title>
+</head>
 <body>
-    <a class="logo" href="/">BloodSend</a>
-    <div>
-        <h1>User: <%= userData.firstname %> <%= userData.lastname %></h1>
-        <script>
-            $(document).ready(function(){
-                $("#deletebutton").click(function(){
+    <div class="container">
+        <header class="header">
+            <a class="logo" href="/">BloodSend</a>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/users/<%= userId %>">Profile</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <main class="content">
+            <section class="profile-header">
+                <div class="profile-avatar">
+                    <%= userData.firstname.charAt(0).toUpperCase() %><%= userData.lastname.charAt(0).toUpperCase() %>
+                </div>
+                <h1 class="profile-name"><%= userData.firstname %> <%= userData.lastname %></h1>
+                <p class="profile-subtitle">Blood Type: <span class="blood-type"><%= userData.bloodtype %></span></p>
+                <div class="profile-status <%= userData.donor == 1 ? 'status-seeking' : 'status-donor' %>">
+                    <%= userData.donor == 1 ? 'Seeking Blood' : 'Blood Donor' %>
+                </div>
+            </section>
+
+            <section class="profile-details">
+                <h2 class="details-title">My Information</h2>
+                <div class="details-grid">
+                    <div class="detail-item">
+                        <div class="detail-label">User ID</div>
+                        <div class="detail-value"><%= userId %></div>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <div class="detail-label">Email Address</div>
+                        <div class="detail-value"><%= userData.email %></div>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <div class="detail-label">Phone Number</div>
+                        <div class="detail-value"><%= userData.phonenumber %></div>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <div class="detail-label">Status</div>
+                        <div class="detail-value">
+                            <%= userData.donor == 1 ? 'Looking for blood donors' : 'Available to donate blood' %>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="actions-section">
+                <h2 class="actions-title">Account Actions</h2>
+                <div class="actions-buttons">
+                    <button class="action-button btn-logout" id="logout">Log Out</button>
+                    <button class="action-button btn-delete" id="deletebutton">Delete Account</button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            $("#deletebutton").click(function(){
+                if(confirm("Are you sure you want to delete your account? This action cannot be undone.")) {
                     var embeddedUserId = "<%= userId %>"
                     $.ajax({
                         url: `/users/${embeddedUserId}`,
                         method: "DELETE",
-
                         success: function(){
-                            console.log("account deleted")
+                            alert("Account deleted successfully");
+                            window.location.href = "/";
                         },
                         error: function(error){
-                            console.log(error)
+                            alert("Error deleting account");
+                            console.log(error);
                         }
+                    });
+                }
+            });
 
-                    })
-                })
-            })
-        </script>
-        <button  id="deletebutton">Delete account</button>
-        <button  id="logout">Log out</button>
-        <script>
-            $(document).ready(function(){
-                $("#logout").click(function(){
-                    var embeddedUserId = "<%= userId %>"
-                    
-                    $.ajax({
-                        url: `/users/${embeddedUserId}`,
-                        method: "POST",
-
-                        success: function(){
-                            console.log("User Logged out")
-                        },
-                        error: function(error){
-                            console.log(error)
-                        }
-                        
-                    })
-                
-                })
-            })
-
-        </script>
-        <ul>
-            <li>Unique id: <%= userId %></li>
-            <li>Blood type: <%= userData.bloodtype %></li>
-            <li>Seeking Blood: <%= userData.donor %></li>
-            <li>Email: <%= userData.email %></li>
-            <li>Phone number: <%= userData.phonenumber %></li>
-        </ul>
-    </div>
+            $("#logout").click(function(){
+                var embeddedUserId = "<%= userId %>"
+                $.ajax({
+                    url: `/users/${embeddedUserId}`,
+                    method: "POST",
+                    success: function(){
+                        alert("Logged out successfully");
+                        window.location.href = "/log-in";
+                    },
+                    error: function(error){
+                        alert("Error logging out");
+                        console.log(error);
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
