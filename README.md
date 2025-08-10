@@ -27,17 +27,4 @@
 3. Use the location-based filter to find nearby donors.
 4. Contact a donor through the provided contact information via their account.
 
----
-
-# API Endpoints
-
-GET	`/api/users`	
-Retrieves a list of all users with their first name, last name, and location.
-
-GET	`/api/near-users`
-Finds nearby users based on the current user's location and filters by donor/requester membership.
-
-GET	`/api/near-users-point`	
-Finds nearby users based on latitude longitude and maximumDistance provided as query parameters.
-
 
