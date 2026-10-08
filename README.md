@@ -2,9 +2,6 @@
 
 **BloodSend** is a web application that connects blood donors with patients in need of blood. The platform allows users to register as donors or request blood donations based on their location and blood type.
 
-
-**bloodsend.onrender.com** (Website may take ~ 30 seconds to load)
-
 ---
 
 ## Features
@@ -22,9 +19,9 @@
 ---
 
 ## Usage
-1. Open the site in your browser at **bloodsend.onrender.com**. 
-2. Register as a donor or a patient in need.
-3. Use the location-based filter to find nearby donors.
-4. Contact a donor through the provided contact information via their account.
+
+1. Register as a donor or a patient in need.
+2. Use the location-based filter to find nearby donors.
+3. Contact a donor through the provided contact information via their account.
 
 
